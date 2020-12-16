@@ -1,8 +1,30 @@
-# DMSC -- Document Level Multi-Aspect Sentiment Classification
+# DMSC
+Document Level Multi-Aspect Sentiment Classification
 
-This repository has codes for the DMSC project.
+[![image](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![image](https://img.shields.io/pypi/l/ansicolortags.svg)](https://github.com/tshi04/DMSC_FEDA/blob/master/LICENSE)
+[![image](https://img.shields.io/github/contributors/Naereen/StrapDown.js.svg)](https://github.com/tshi04/DMSC_FEDA/graphs/contributors)
+[![image](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://github.com/tshi04/DMSC_FEDA/issues)
+[![image](https://img.shields.io/badge/arXiv-1805.09461-red.svg?style=flat)](https://arxiv.org/pdf/2009.09112.pdf)
 
-### Dataset
+This repository is a pytorch implementation for the following arxiv paper:
+
+#### [Deliberate Self-Attention Network with Uncertainty Estimation for Multi-Aspect Review Rating Prediction](https://arxiv.org/pdf/2009.09112.pdf)
+[Tian Shi](http://people.cs.vt.edu/tshi/homepage/home), 
+[Ping Wang](http://people.cs.vt.edu/ping/homepage/), 
+[Chandan K. Reddy](http://people.cs.vt.edu/~reddy/)
+
+## Requirements
+
+- Python 3.6.9
+- argparse=1.1
+- torch=1.4.0
+- sklearn=0.22.2.post1
+- numpy=1.18.2
+
+## Dataset
+
+Some data sources:
 
 - TripAdvisor-R:
 [https://github.com/HKUST-KnowComp/DMSC](https://github.com/HKUST-KnowComp/DMSC)
@@ -14,10 +36,25 @@ This repository has codes for the DMSC project.
 [https://github.com/HKUST-KnowComp/DMSC](https://github.com/HKUST-KnowComp/DMSC)
 - BeerAdvocate-B:
 [https://github.com/HKUST-KnowComp/VWS-DMSC](https://github.com/HKUST-KnowComp/VWS-DMSC)
-- RateMDs-R:
-[https://drive.google.com/open?id=19TFzevI13czmA4U0XK7odbWVIaygFNzA](https://drive.google.com/open?id=19TFzevI13czmA4U0XK7odbWVIaygFNzA)
-- RateMDs-B:
-[https://drive.google.com/open?id=16m4ljH8o6a_gJr_z1PM-J6rwHEButQqg](https://drive.google.com/open?id=16m4ljH8o6a_gJr_z1PM-J6rwHEButQqg)
+
+Please download processed dataset from here. Place them along side with DMSC_FEDA.
+
+```bash
+|--- DMSC_FEDA
+|--- Data
+|    |--- trip_rate
+|    |--- trip_binary
+|    |    |--- dev
+|    |    |--- dev.bert
+|    |    |--- glove_42B_300d.npy
+|    |    |--- test
+|    |    |--- test.bert
+|    |    |--- train
+|    |    |--- train.bert
+|    |    |--- vocab
+|    |    |--- vocab_glove_42B_300d
+|--- nats_results (results, automatically build)
+```
 
 ### Experiments and Results
 
