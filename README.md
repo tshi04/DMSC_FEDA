@@ -66,7 +66,7 @@ Please download processed dataset from here. Place them along side with DMSC_FED
 
 If you want to run baselines, you may need un-comment the corresponding line in ```run.py```.
 
-### Baselines Implemented.
+## Baselines Implemented.
 
 | Model | BRIEF | 
 | ------ | ------ |
