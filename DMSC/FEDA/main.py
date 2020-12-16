@@ -15,7 +15,7 @@ parser.add_argument('--task', default='train',
                     help='train | evaluate | visualization | keywords')
 
 parser.add_argument(
-    '--data_dir', default='../data/beer_binary', help='data dir')
+    '--data_dir', default='../data/trip_binary', help='data dir')
 parser.add_argument('--file_vocab', default='vocab',
                     help='file store vocabulary.')
 parser.add_argument('--file_train', default='train', help='train data.')
@@ -53,7 +53,7 @@ parser.add_argument('--file_pretrain_vocab', default='vocab_glove_42B_300d',
 parser.add_argument('--file_pretrain_vec', default='glove_42B_300d.npy',
                     help='file store pretrain vec.')
 # shared
-parser.add_argument('--n_tasks', type=int, default=4, help='number of aspects')
+parser.add_argument('--n_tasks', type=int, default=7, help='number of aspects')
 parser.add_argument('--n_class', type=int, default=2, help='number of clsses')
 parser.add_argument('--review_max_lens', type=int,
                     default=400, help='max length documents.')

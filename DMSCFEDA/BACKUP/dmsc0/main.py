@@ -11,45 +11,38 @@ parser = argparse.ArgumentParser()
 Use in the framework and cannot remove.
 '''
 parser.add_argument('--debug', type=str2bool, default=False, help='Debug?')
-parser.add_argument('--task', default='train',
-                    help='train | test | keywords | evaluate')
+parser.add_argument('--task', default='train', help='train | evaluate')
 
-parser.add_argument('--data_dir', default='../data/trip_binary',
-                    help='data dir')
+parser.add_argument(
+    '--data_dir', default='../data/ratemds_binary', help='data dir')
 parser.add_argument('--file_vocab', default='vocab',
                     help='file store vocabulary.')
-parser.add_argument('--file_train', default='train', help='train data.')
-parser.add_argument('--file_val', default='dev', help='dev data')
-parser.add_argument('--file_test', default='test', help='test data')
+parser.add_argument('--file_train', default='train_fine', help='train data.')
+parser.add_argument('--file_val', default='dev_fine', help='dev data')
+parser.add_argument('--file_test', default='test_fine', help='test data')
 
 parser.add_argument('--n_epoch', type=int, default=10,
                     help='number of epochs.')
-parser.add_argument('--batch_size', type=int, default=20, help='batch size.')
-parser.add_argument('--checkpoint', type=int, default=500,
+parser.add_argument('--batch_size', type=int, default=100, help='batch size.')
+parser.add_argument('--checkpoint', type=int, default=1000,
                     help='How often you want to save model?')
 
-parser.add_argument('--continue_training', type=str2bool, default=True,
-                    help='Do you want to continue?')
+parser.add_argument('--continue_training', type=str2bool,
+                    default=True, help='Do you want to continue?')
 parser.add_argument('--train_base_model', type=str2bool, default=False,
                     help='True: Use Pretrained Param | False: Transfer Learning')
-parser.add_argument('--is_lower', type=str2bool, default=True,
-                    help='lower case for all words?')
-# testing and analysis
-parser.add_argument('--base_model_dir', default='../nats_results',
+parser.add_argument('--is_lower', type=str2bool,
+                    default=True, help='lower case for all words?')
+
+parser.add_argument('--base_model_dir', default='../nats_results', 
                     help='---')
-parser.add_argument('--train_model_dir', default='../nats_results',
+parser.add_argument('--train_model_dir', default='../nats_results', 
                     help='---')
-parser.add_argument('--best_epoch', type=int, default=1,
+parser.add_argument('--best_epoch', type=int, default=1, 
                     help='---')
-parser.add_argument('--test_output_dir', default='test',
+parser.add_argument('--test_output_dir', default='test_fine',
                     help='---')
-parser.add_argument('--keywords_output_dir', default='keywords_aspect',
-                    help='---')
-# uncertainty
-parser.add_argument('--uncertainty_total_samples', type=int, default=50,
-                    help='---')
-# metric Learning
-parser.add_argument('--metric_learning', type=str2bool, default=False,
+parser.add_argument('--keywords_output_dir', default='keywords_fine',
                     help='---')
 '''
 User specified parameters.
@@ -57,21 +50,25 @@ User specified parameters.
 parser.add_argument('--device', default="cuda:0", help='device')
 # optimization
 parser.add_argument('--learning_rate', type=float,
-                    default=0.0005, help='learning rate.')
+                    default=0.0002, help='learning rate.')
 parser.add_argument('--grad_clip', type=float, default=2.0,
                     help='clip the gradient norm.')
 # vocabulary
+parser.add_argument('--max_vocab_size', type=int,
+                    default=50000, help='vocabulary size clip')
+parser.add_argument('--word_minfreq', type=int, default=5,
+                    help='tokens min frequency')
 parser.add_argument('--file_pretrain_vocab', default='vocab_glove_42B_300d',
                     help='file store pretrain vocabulary.')
 parser.add_argument('--file_pretrain_vec', default='glove_42B_300d.npy',
                     help='file store pretrain vec.')
 # shared
-parser.add_argument('--n_tasks', type=int, default=7,
+parser.add_argument('--n_tasks', type=int, default=4,
                     help='number of aspects')
 parser.add_argument('--n_class', type=int, default=2,
                     help='number of clsses')
-parser.add_argument('--review_max_lens', type=int, default=400,
-                    help='max length documents.')
+parser.add_argument('--review_max_lens', type=int,
+                    default=50, help='max length documents.')
 parser.add_argument('--emb_dim', type=int, default=300,
                     help='embedding dimension')
 # RNN coefficient
@@ -81,22 +78,14 @@ parser.add_argument('--rnn_nLayers', type=int,
 parser.add_argument('--rnn_hidden_dim', type=int,
                     default=600, help='encoder hidden dimension')
 # dropout
-parser.add_argument('--drop_rate', type=float, default=0.2, help='dropout.')
+parser.add_argument('--drop_rate', type=float, default=0.1, help='dropout.')
 # scheduler
 parser.add_argument('--lr_schedule', type=str2bool,
-                    default=True, help='Schedule learning rate.')
+                    default=False, help='Schedule learning rate.')
 parser.add_argument('--step_size', type=int, default=2, help='---')
 parser.add_argument('--step_decay', type=float, default=0.8, help='---')
 # keywords
 parser.add_argument('--n_keywords', type=int, default=8, help='---')
-# uncertainty
-parser.add_argument('--drop_option', default='attention',
-                    help='attention | vector')
-# visualization
-parser.add_argument('--aspect_label',
-                    default='Value,Room,Location,Cleanliness,Checkin,Service,Business',
-                    help='Feel,Look,Smell,Taste')
-parser.add_argument('--visualization_aspect', default='1,2,3,6', help='---')
 
 args = parser.parse_args()
 
@@ -104,22 +93,17 @@ args = parser.parse_args()
 run model
 '''
 if args.task == 'evaluate':
-    from LeafNATS.eval_scripts.eval_dmsc import evaluation
+    from LeafNATS.eval_scripts.eval_dmsc_single import evaluation
     evaluation(args)
 else:
     import torch
     args.device = torch.device(args.device)
-    from .model import modelCoarse
-    model = modelCoarse(args)
-
+    from .model import modelFine
+    model = modelFine(args)
     if args.task == 'train':
         model.train()
     if args.task == 'test':
         model.test()
-    if args.task == 'test_penultimate':
-        model.test_penultimate()
-    if args.task == 'test_uncertainty':
-        model.test_uncertainty()
     if args.task == 'keywords':
         model.keywords()
     if args.task == 'visualization':

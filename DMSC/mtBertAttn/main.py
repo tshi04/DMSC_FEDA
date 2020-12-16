@@ -15,7 +15,7 @@ parser.add_argument('--task', default='train',
                     help='train | evaluate | visualization | keywords')
 
 parser.add_argument(
-    '--data_dir', default='../data/beer_binary', help='data dir')
+    '--data_dir', default='../data/trip_binary', help='data dir')
 parser.add_argument('--file_train', default='train.bert', help='train data.')
 parser.add_argument('--file_val', default='dev.bert', help='dev data')
 parser.add_argument('--file_test', default='test.bert', help='test data')
@@ -42,7 +42,7 @@ parser.add_argument('--learning_rate', type=float,
 parser.add_argument('--grad_clip', type=float, default=2.0,
                     help='clip the gradient norm.')
 # shared
-parser.add_argument('--n_tasks', type=int, default=4, help='number of aspects')
+parser.add_argument('--n_tasks', type=int, default=7, help='number of aspects')
 parser.add_argument('--n_class', type=int, default=2, help='number of clsses')
 parser.add_argument('--review_max_lens', type=int,
                     default=400, help='max length documents.')

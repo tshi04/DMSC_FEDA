@@ -14,7 +14,7 @@ parser.add_argument('--debug', type=str2bool, default=False, help='Debug?')
 parser.add_argument('--task', default='train',
                     help='train | test | keywords | evaluate')
 
-parser.add_argument('--data_dir', default='../data/trip_rate',
+parser.add_argument('--data_dir', default='../data/trip_binary',
                     help='data dir')
 parser.add_argument('--file_vocab', default='vocab',
                     help='file store vocabulary.')
@@ -68,7 +68,7 @@ parser.add_argument('--file_pretrain_vec', default='glove_42B_300d.npy',
 # shared
 parser.add_argument('--n_tasks', type=int, default=7,
                     help='number of aspects')
-parser.add_argument('--n_class', type=int, default=5,
+parser.add_argument('--n_class', type=int, default=2,
                     help='number of clsses')
 parser.add_argument('--review_max_lens', type=int, default=400,
                     help='max length documents.')

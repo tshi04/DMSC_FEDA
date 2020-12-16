@@ -7,7 +7,7 @@ import torch
 import torch.nn.functional as F
 from torch.autograd import Variable
 
-from DMSCFine.model_base import modelDMSCBase
+from DMSCFEDA.model_base import modelDMSCBase
 from LeafNATS.modules.encoder.encoder_rnn import EncoderRNN
 from LeafNATS.modules.utils.CompressionFM import CompressionFM
 
