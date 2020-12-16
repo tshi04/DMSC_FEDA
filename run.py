@@ -8,4 +8,4 @@
 # from DMSC.mtBertAttn.main import *
 ### DMSC + Uncertainty
 # from DMSCFEDA.FEDA.main import *
-# from DMSCFEDA.FEDAR.main import *
+from DMSCFEDA.FEDAR.main import *
