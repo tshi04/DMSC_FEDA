@@ -56,6 +56,17 @@ Please download processed dataset from here. Place them along side with DMSC_FED
 |--- nats_results (results, automatically build)
 ```
 
+## Usuage
+
+```Training, Validate, Testing``` python3 run.py --task train
+```Testing only``` python3 run.py --task test
+```Evaluation``` python3 run.py --task evaluate
+```keywords Extraction``` python3 run.py --task keywords
+```Attention Weight Visualization``` python3 run.py --task visualization
+
+If you want to run baselines, you may need un-comment the corresponding line in ```run.py```.
+
+
 ### Experiments and Results
 
 | Model | BRIEF | 
