@@ -1,5 +1,5 @@
 # DMSC
-Document Level Multi-Aspect Sentiment Classification
+Document Level Multi-Aspect Rating Prediction
 
 [![image](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![image](https://img.shields.io/pypi/l/ansicolortags.svg)](https://github.com/tshi04/DMSC_FEDA/blob/master/LICENSE)
