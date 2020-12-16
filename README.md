@@ -66,8 +66,9 @@ Please download processed dataset from here. Place them along side with DMSC_FED
 
 If you want to run baselines, you may need un-comment the corresponding line in ```run.py```.
 
-
 ### Experiments and Results
+
+In this section, we show some experimental results on different datasets.
 
 | Model | BRIEF | 
 | ------ | ------ |
