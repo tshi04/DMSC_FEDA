@@ -37,6 +37,7 @@ Some data sources:
 - BeerAdvocate-B:
 [https://github.com/HKUST-KnowComp/VWS-DMSC](https://github.com/HKUST-KnowComp/VWS-DMSC)
 
+
 Please download processed dataset from here. Place them along side with DMSC_FEDA.
 
 ```bash
@@ -77,8 +78,6 @@ If you want to run baselines, you may need un-comment the corresponding line in 
 | mtAttnDA | mtRNN + Deliberated Self-Attention |
 | MtAttnFE | mtAttn + Pretrained Embedding + Feature Enrichment |
 | FEDA | mtAttnDA + Pretrained Embedding + Feature Enrichment |
-
-- Glove_42B_300D word embedding.
 
 # Use Pretrained Model
 
